@@ -3,7 +3,10 @@ package com.cxsplay.jpdemo.paging
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
 import com.cxsplay.jpdemo.R
 
 class SimpleListActivity : AppCompatActivity() {
@@ -19,7 +22,16 @@ class SimpleListActivity : AppCompatActivity() {
         }
     }
 
-    private val model:SubRedditViewModel by viewmodels
+    private val model: SubRedditViewModel by viewModels {
+        object : ViewModelProvider.Factory {
+            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+                val repoTypeParam = intent.getIntExtra(KEY_REPOSITORY_TYPE, 0)
+                val repoType = RedditPostRepository.Type.values()[repoTypeParam]
+                val repo = ServiceLocator.instance(this@SimpleListActivity).getRepository(repoType)
+                return SubRedditViewModel(repo) as T
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
