@@ -1,6 +1,7 @@
 package com.cxsplay.jpdemo.paging
 
 import android.util.Log
+import com.blankj.utilcode.util.BusUtils
 import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -14,7 +15,24 @@ import retrofit2.http.Query
 interface RedditApi {
 
     @GET("/r/{subreddit}/hot.json")
-    fun getTop(@Path("subreddit") subreddit: String, @Query("limit") limit: Int): Call<Any>
+    fun getTop(
+        @Path("subreddit") subreddit: String,
+        @Query("limit") limit: Int
+    ): Call<ListingResponse>
+
+    @GET("/r/{subreddit}/hot.json")
+    fun getTopAfter(
+        @Path("subreddit") subreddit: String,
+        @Query("after") after: String,
+        @Query("limit") limit: Int
+    ): Call<ListingResponse>
+
+    @GET("/r/{subreddit}/hot.json")
+    fun getTopBefore(
+        @Path("subreddit") subreddit: String,
+        @Query("before") before: String,
+        @Query("limit") limit: Int
+    ): Call<ListingResponse>
 
     class ListingResponse(val data: ListingData)
 

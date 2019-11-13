@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
+apply plugin: "com.blankj.bus"
 
 android {
     compileSdkVersion 29
@@ -39,11 +40,13 @@ dependencies {
     implementation "com.squareup.retrofit2:retrofit-mock:2.6.0"
     implementation "com.squareup.okhttp3:logging-interceptor:3.14.2"
 
-    implementation "androidx.lifecycle:lifecycle-runtime:2.2.0-rc01"
-    implementation "androidx.lifecycle:lifecycle-common-java8:2.2.0-rc01"
-    implementation "androidx.lifecycle:lifecycle-compiler:2.2.0-rc01"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0-rc01"
-    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0-rc01"
+    implementation "androidx.lifecycle:lifecycle-runtime:2.2.0-rc02"
+    implementation "androidx.lifecycle:lifecycle-common-java8:2.2.0-rc02"
+    implementation "androidx.lifecycle:lifecycle-compiler:2.2.0-rc02"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0-rc02"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0-rc02"
     implementation "androidx.activity:activity-ktx:1.1.0-rc02"
+
+    implementation "com.blankj:utilcodex:1.25.9"
 
 }
