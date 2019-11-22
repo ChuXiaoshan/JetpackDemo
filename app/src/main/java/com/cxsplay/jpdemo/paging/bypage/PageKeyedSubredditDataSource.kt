@@ -72,6 +72,7 @@ class PageKeyedSubredditDataSource(
             val items = data?.children?.map { it.data } ?: emptyList()
             retry = null
             networkState.postValue(NetworkState.LOADED)
+            initialLoad.postValue(NetworkState.LOADED)
             callback.onResult(items, data?.before, data?.after)
         } catch (e: IOException) {
             retry = {

@@ -47,11 +47,11 @@ open class DefaultServiceLocator(val app: Application, val useInMemoryDB: Boolea
     }
 
     override fun getRepository(type: RedditPostRepository.Type): RedditPostRepository {
-        return
+        return InMemoryByPageKeyRepository(getRedditApi(), getNetWorkExecutor())
 //        when (type) {
 //            RedditPostRepository.Type.IN_MEMORY_BY_ITEM -> InMemoryByItemRepository(getRedditApi(), getNetWorkExecutor())
 //        RedditPostRepository.Type.IN_MEMORY_BY_PAGE ->
-        InMemoryByPageKeyRepository(getRedditApi(), getNetWorkExecutor())
+//        InMemoryByPageKeyRepository(getRedditApi(), getNetWorkExecutor())
 //            RedditPostRepository.Type.DB -> DbRedditPostRepository(db, getRedditApi(), getDiskIOExecutor())
 //        }
     }

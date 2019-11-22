@@ -16,6 +16,14 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <Button
+            android:id="@+id/btn_paging1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="paging demo"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_paging" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
