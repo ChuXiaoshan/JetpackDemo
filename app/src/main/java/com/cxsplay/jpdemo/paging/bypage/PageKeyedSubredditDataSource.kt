@@ -2,6 +2,7 @@ package com.cxsplay.jpdemo.paging.bypage
 
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
+import com.blankj.utilcode.util.LogUtils
 import com.cxsplay.jpdemo.paging.NetworkState
 import com.cxsplay.jpdemo.paging.RedditApi
 import com.cxsplay.jpdemo.paging.RedditPost
@@ -63,6 +64,7 @@ class PageKeyedSubredditDataSource(
     }
 
     override fun loadInitial(params: LoadInitialParams<String>, callback: LoadInitialCallback<String, RedditPost>) {
+        LogUtils.d("---loadInitial--->")
         val request = redditApi.getTop(subredditName, params.requestedLoadSize)
         networkState.postValue(NetworkState.LOADING)
         initialLoad.postValue(NetworkState.LOADING)

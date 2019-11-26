@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations.map
 import androidx.lifecycle.Transformations.switchMap
 import androidx.lifecycle.ViewModel
+import com.blankj.utilcode.util.LogUtils
 
 class SubRedditViewModel(private val repository: RedditPostRepository) : ViewModel() {
     private val subredditName = MutableLiveData<String>()
@@ -11,11 +12,18 @@ class SubRedditViewModel(private val repository: RedditPostRepository) : ViewMod
         repository.postsOfSubreddit(it, 20)
     }
 
-    val posts = switchMap(repoResult) { it.pagedList }
-    val networkState = switchMap(repoResult) { it.networkState }
-    val refreshState = switchMap(repoResult) { it.refreshState }
+    val posts = switchMap(repoResult) {
+        it.pagedList
+    }
+    val networkState = switchMap(repoResult) {
+        it.networkState
+    }
+    val refreshState = switchMap(repoResult) {
+        it.refreshState
+    }
 
     fun refresh() {
+        LogUtils.d("---refresh--->")
         repoResult.value?.refresh?.invoke()
     }
 
@@ -28,7 +36,7 @@ class SubRedditViewModel(private val repository: RedditPostRepository) : ViewMod
     }
 
     fun retry() {
-        val listing = repoResult?.value
+        val listing = repoResult.value
         listing?.retry?.invoke()
     }
 

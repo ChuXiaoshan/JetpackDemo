@@ -35,8 +35,7 @@ class SimpleListActivity : AppCompatActivity() {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
                 val repoTypeParam = intent.getIntExtra(KEY_REPOSITORY_TYPE, 0)
                 val repoType = RedditPostRepository.Type.values()[repoTypeParam]
-                val repo = ServiceLocator.instance(this@SimpleListActivity)
-                    .getRepository(repoType)
+                val repo = ServiceLocator.instance(this@SimpleListActivity).getRepository(repoType)
                 @Suppress("UNCHECKED_CAST")
                 return SubRedditViewModel(repo) as T
             }
